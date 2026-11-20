@@ -1,4 +1,6 @@
-const base = () => `${location.origin}${location.pathname}`;
+/** The installed app's address; Shortcuts must open this exact URL so events land in the home-screen app's storage. */
+export const LIVE_URL = 'https://theunknowneditor6767.github.io/daily-discipline/';
+const base = () => LIVE_URL;
 
 const AUTOMATIONS = [
   {

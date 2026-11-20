@@ -51,7 +51,7 @@ test('Setup shows the Shortcut guide with event URLs', async ({ page }) => {
   await page.getByRole('button', { name: 'Setup' }).click();
   await page.getByRole('button', { name: /iPhone Shortcuts/ }).click();
   const guide = page.getByTestId('shortcut-guide');
-  await expect(guide).toContainText('/daily-discipline/?event=alarm-stopped');
+  await expect(guide).toContainText('https://theunknowneditor6767.github.io/daily-discipline/?event=alarm-stopped');
   await expect(guide).toContainText('?event=snoozed');
   await expect(guide).toContainText('?event=in-bed');
   await page.screenshot({ path: 'docs/screenshots/04-setup-shortcuts.png', fullPage: true, animations: 'disabled' });
