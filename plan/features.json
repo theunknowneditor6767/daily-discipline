@@ -1,0 +1,105 @@
+[
+  {
+    "id": "f1-wake-anchor",
+    "milestone": "v1",
+    "desc": "Wake anchor, Good morning check-in, Shortcut URL events, advance proposal, Shortcut guide, export/import",
+    "verify": "npm test && npx playwright test morning pwa",
+    "files": [
+      "src/logic/anchor.ts",
+      "src/logic/time.ts",
+      "src/store/db.ts",
+      "src/ui/MorningCard.tsx",
+      "src/ui/Setup.tsx",
+      "src/ui/ShortcutGuide.tsx"
+    ],
+    "deps": [],
+    "gate": "agent",
+    "passes": true,
+    "evidence": "HEAD at verify time"
+  },
+  {
+    "id": "f2-wind-down",
+    "milestone": "v1",
+    "desc": "Tonight card: lights-out countdown (anchor - 8h), 3 picked wind-down steps, one-tap in bed",
+    "verify": "npm test && npx playwright test tonight",
+    "files": [
+      "src/logic/winddown.ts",
+      "src/ui/TonightCard.tsx"
+    ],
+    "deps": [
+      "f1-wake-anchor"
+    ],
+    "gate": "agent",
+    "passes": true,
+    "evidence": "HEAD at verify time"
+  },
+  {
+    "id": "f3-training",
+    "milestone": "v1",
+    "desc": "Paste weekly plan once; today's session with one-tap done; abs tick",
+    "verify": "npm test && npx playwright test training",
+    "files": [
+      "src/logic/plan.ts",
+      "src/ui/TrainingCard.tsx"
+    ],
+    "deps": [
+      "f1-wake-anchor"
+    ],
+    "gate": "agent",
+    "passes": true,
+    "evidence": "HEAD at verify time"
+  },
+  {
+    "id": "f4-eating",
+    "milestone": "v1",
+    "desc": "Daily 'ate to plan' tick",
+    "verify": "npx playwright test eating",
+    "files": [
+      "src/ui/EatingCard.tsx"
+    ],
+    "deps": [],
+    "gate": "agent",
+    "passes": true,
+    "evidence": "HEAD at verify time"
+  },
+  {
+    "id": "f5-streaks-week",
+    "milestone": "v1",
+    "desc": "Streaks with 1 grace miss/week/habit; Week screen with sleep chart, streaks, one-line feedback",
+    "verify": "npm test && npx playwright test week",
+    "files": [
+      "src/logic/streaks.ts",
+      "src/ui/Week.tsx"
+    ],
+    "deps": [
+      "f2-wind-down",
+      "f3-training",
+      "f4-eating"
+    ],
+    "gate": "agent",
+    "passes": true,
+    "evidence": "HEAD at verify time"
+  },
+  {
+    "id": "f6-push-flag",
+    "milestone": "v1",
+    "desc": "Push reminders behind pushEnabled flag; needs Cloudflare Worker cron + the owner's free account",
+    "verify": "manual",
+    "files": [],
+    "deps": [],
+    "gate": "human",
+    "passes": false
+  },
+  {
+    "id": "h1-iphone-install",
+    "milestone": "v1",
+    "desc": "Owner installs on iPhone home screen, sets up 3 Shortcut automations, confirms alarm-stopped/snoozed/in-bed log",
+    "verify": "manual",
+    "files": [],
+    "deps": [
+      "f1-wake-anchor"
+    ],
+    "gate": "human",
+    "passes": false
+  }
+]

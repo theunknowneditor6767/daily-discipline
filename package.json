@@ -1,0 +1,26 @@
+{
+  "name": "dailydiscipline",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173 --strictPort",
+    "test": "vitest run",
+    "e2e": "playwright test",
+    "verify": "npm test && npm run build && npm run e2e"
+  },
+  "dependencies": {
+    "preact": "^11.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.61.1",
+    "@preact/preset-vite": "^2.10.6",
+    "fake-indexeddb": "^6.2.8",
+    "jsdom": "^29.1.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.1"
+  }
+}
